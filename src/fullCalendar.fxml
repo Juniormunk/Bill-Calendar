@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import org.controlsfx.control.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="calendarPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1045.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <Label fx:id="dateLabel" layoutX="792.0" layoutY="39.0" prefHeight="53.0" prefWidth="229.0" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <ListView fx:id="listView" editable="true" layoutX="792.0" layoutY="92.0" onKeyPressed="#Delete" onMouseClicked="#selectBill" prefHeight="229.0" prefWidth="229.0" />
+      <Button fx:id="addButton" layoutX="955.0" layoutY="591.0" mnemonicParsing="false" style="-fx-background-radius: 0;" text="Add New" />
+      <Label layoutX="797.0" layoutY="327.0" text="Name: " />
+      <Label layoutX="797.0" layoutY="350.0" text="Company Name:" />
+      <Label layoutX="797.0" layoutY="373.0" text="Date Due:" />
+      <Hyperlink fx:id="HL" disable="true" layoutX="835.0" layoutY="393.0" onAction="#OpenLink" prefHeight="23.0" prefWidth="203.0" />
+      <Label layoutX="797.0" layoutY="396.0" text="Link:" />
+      <Label layoutX="797.0" layoutY="419.0" text="Amount Due:" />
+      <TextArea fx:id="otherInfo" editable="false" layoutX="797.0" layoutY="443.0" prefHeight="141.0" prefWidth="229.0" wrapText="true" />
+      <Label fx:id="nameInfo" layoutX="889.0" layoutY="327.0" prefHeight="17.0" prefWidth="132.0" />
+      <Label fx:id="companyInfo" layoutX="889.0" layoutY="350.0" prefHeight="17.0" prefWidth="132.0" />
+      <Label fx:id="dateInfo" layoutX="889.0" layoutY="373.0" prefHeight="17.0" prefWidth="132.0" />
+      <Label fx:id="amountInfo" layoutX="889.0" layoutY="419.0" prefHeight="17.0" prefWidth="132.0" />
+      <Button fx:id="deleteButton" disable="true" layoutX="812.0" layoutY="591.0" mnemonicParsing="false" onMouseClicked="#deleteButtonAction" style="-fx-background-radius: 0;" text="Delete" />
+      <Button fx:id="editButton" disable="true" layoutX="768.0" layoutY="591.0" mnemonicParsing="false" onMouseClicked="#EditButton" style="-fx-background-radius: 0;" text="Edit" />
+      <ToggleSwitch fx:id="Paid" disable="true" layoutX="868.0" layoutY="595.0" onMouseClicked="#ChangePaid" text="Paid:" />
+   </children>
+</Pane>

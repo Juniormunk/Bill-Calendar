@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-border-color: #3d3d3d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
+   <children>
+      <Circle layoutX="516.0" layoutY="386.0" radius="100.0" smooth="false" stroke="#47a1d8" strokeType="INSIDE">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#47a2d6" />
+                  <Stop color="#47a2d6" offset="0.9616858237547891" />
+                  <Stop color="#00000087" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Circle>
+      <Circle layoutX="152.0" layoutY="361.0" radius="100.0" smooth="false" stroke="#47a1d8" strokeType="INSIDE">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#47a2d6" />
+                  <Stop color="#47a2d6" offset="0.9616858237547891" />
+                  <Stop color="#00000087" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Circle>
+      <Circle layoutX="375.0" layoutY="114.0" radius="100.0" smooth="false" stroke="#47a1d8" strokeType="INSIDE">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#47a2d6" />
+                  <Stop color="#47a2d6" offset="0.9616858237547891" />
+                  <Stop color="#00000087" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill></Circle>
+      <Button fx:id="login" layoutX="186.0" layoutY="342.0" mnemonicParsing="false" onAction="#login" style="-fx-background-radius: 20; -fx-background-color: #353535;" text="Login" textAlignment="CENTER" textFill="WHITE" underline="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="signup" layoutX="340.0" layoutY="342.0" mnemonicParsing="false" onAction="#signup" style="-fx-background-radius: 20; -fx-background-color: #353535;" text="Sign Up" textAlignment="CENTER" textFill="WHITE" underline="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="lockimg" fitHeight="200.0" fitWidth="200.0" layoutX="201.0" layoutY="43.0">
+         <image>
+            <Image url="@/lock.png" />
+         </image></ImageView>
+      <TextField fx:id="usernameField" alignment="TOP_CENTER" layoutX="226.0" layoutY="261.0" promptText="Username" style="-fx-background-radius: 0; -fx-background-color: #232320; -fx-text-inner-color: #ffffff;" />
+      <PasswordField fx:id="passwordField" alignment="TOP_CENTER" layoutX="226.0" layoutY="291.0" onKeyPressed="#loginKey" promptText="Password" style="-fx-background-radius: 0; -fx-background-color: #232320; -fx-text-inner-color: #ffffff;" />
+      <Rectangle fx:id="utilbar" arcHeight="5.0" arcWidth="5.0" height="25.0" onMouseDragged="#changeWindowPos" onMousePressed="#startchangeWindowPos" stroke="#47a2d6" strokeType="INSIDE" width="600.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+               <stops>
+                  <Stop color="#323232" />
+                  <Stop color="#47a2d6" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="20.0" layoutX="578.0" layoutY="4.0" onMouseEntered="#stopDrag" onMouseExited="#startDrag" onMouseReleased="#closeApp" strokeType="INSIDE" width="20.0">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#565179" />
+                  <Stop color="#565179" offset="0.007662835249042145" />
+                  <Stop color="#7e57ff87" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+         <stroke>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#323232" />
+                  <Stop color="#7e57ff" offset="0.007662835249042145" />
+                  <Stop color="#754fff" offset="0.9961685823754789" />
+                  <Stop color="#754fff" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </stroke>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Rectangle>
+      <ImageView fx:id="closeimg" fitHeight="20.0" fitWidth="20.0" layoutX="578.0" layoutY="4.0" onMouseEntered="#stopDrag" onMouseExited="#startDrag" onMouseReleased="#closeApp">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@/close.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="invalidLabel" layoutX="208.0" layoutY="325.0" text="Username Or Password Is Invalid" textFill="RED">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Circle layoutX="14.0" layoutY="143.0" radius="100.0" smooth="false" stroke="#47a1d8" strokeType="INSIDE">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#47a2d6" />
+                  <Stop color="#47a2d6" offset="0.9616858237547891" />
+                  <Stop color="#00000087" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Circle>
+   </children>
+</Pane>

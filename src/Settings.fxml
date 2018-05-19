@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import org.controlsfx.control.*?>
+<?import org.controlsfx.control.textfield.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="189.0" prefWidth="509.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="settingsController">
+   <children>
+      <Button fx:id="applyButton" layoutX="448.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#applySettings" text="Apply" />
+      <Button fx:id="cancelButton" layoutX="383.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#closeSettings" text="Cancel" />
+      <TextField fx:id="urlBar" layoutX="102.0" layoutY="70.0" prefHeight="25.0" prefWidth="307.0" />
+      <Text layoutX="16.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" wrappingWidth="188.5078125">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Button fx:id="browseButton" layoutX="421.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#browseFiles" prefHeight="25.0" prefWidth="76.0" text="Browse" />
+      <Label layoutX="7.0" layoutY="74.0" prefHeight="18.0" prefWidth="95.0" text="Backup Location :" />
+      <Label layoutX="7.0" layoutY="112.0" text="Use Windows Notifications: " />
+      <ColorPicker fx:id="todayColor" layoutX="328.0" layoutY="109.0" />
+      <Label layoutX="242.0" layoutY="112.0" text="Todays Color :" />
+      <Label layoutX="6.0" layoutY="141.0" text="Selected Day Color :" />
+      <ColorPicker fx:id="selectColor" layoutX="118.0" layoutY="138.0" />
+      <ImageView fitHeight="53.0" fitWidth="69.0" layoutX="176.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/bill3.png" />
+         </image>
+      </ImageView>
+      <ToggleSwitch fx:id="useNotifs" layoutX="158.0" layoutY="112.0" />
+   </children>
+</Pane>

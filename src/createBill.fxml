@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import org.controlsfx.control.*?>
+<?import org.controlsfx.glyphfont.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewBillController">
+   <children>
+      <Label layoutX="12.0" layoutY="14.0" text="Name:" />
+      <Label layoutX="12.0" layoutY="42.0" text="Date:" />
+      <Label layoutX="12.0" layoutY="70.0" text="Company Name:" />
+      <Label layoutX="14.0" layoutY="98.0" text="Link:" />
+      <Label layoutX="13.0" layoutY="126.0" text="Amount Due:" />
+      <Label layoutX="13.0" layoutY="154.0" text="Other Information:" />
+      <TextArea fx:id="otherField" layoutX="14.0" layoutY="176.0" prefHeight="204.0" prefWidth="570.0" wrapText="true" />
+      <TextField fx:id="nameField" layoutX="119.0" layoutY="10.0" prefHeight="25.0" prefWidth="174.0" promptText="EX: Amazon Normal Bill" />
+      <DatePicker fx:id="dateField" layoutX="119.0" layoutY="38.0" />
+      <TextField fx:id="comField" layoutX="119.0" layoutY="66.0" prefHeight="25.0" prefWidth="174.0" promptText="EX: Amazon" />
+      <TextField fx:id="linkField" layoutX="119.0" layoutY="94.0" prefHeight="25.0" prefWidth="174.0" promptText="EX: www.amazon.com" />
+      <TextField fx:id="amountField" layoutX="119.0" layoutY="122.0" prefHeight="25.0" prefWidth="174.0" promptText="EX: 52.65$" />
+      <Button fx:id="applyButton" layoutX="539.0" layoutY="393.0" mnemonicParsing="false" onMouseClicked="#createBill" text="Apply" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="461.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/Bill2.png" />
+         </image>
+      </ImageView>
+      <ToggleSwitch fx:id="paidToggle" layoutX="315.0" layoutY="14.0" text="Paid:   " />
+   </children>
+</Pane>
