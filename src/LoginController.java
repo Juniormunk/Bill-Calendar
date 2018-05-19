@@ -55,7 +55,7 @@ public class LoginController
 
 	private boolean dragable = true;
 
-	private static final String folderPath = System.getProperty("user.home") + "\\documents\\BillCalandar";
+	private static final String folderPath = System.getenv("ProgramFiles") + "\\BillCalandar";
 
 	public static String fileName = "";
 
