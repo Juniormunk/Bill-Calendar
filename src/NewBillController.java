@@ -43,9 +43,9 @@ public class NewBillController
 	void createBill(MouseEvent event)
 	{
 		ArrayList<Bill> list = new ArrayList<Bill>();
-		if (LoginController.props.getProperty(this.dateField.getValue().toString()) != null)
+		if (Globals.props.getProperty(this.dateField.getValue().toString()) != null)
 		{
-			list.addAll(Main.stringToArrayList(LoginController.props.getProperty(this.dateField.getValue().toString())));
+			list.addAll(Main.stringToArrayList(Globals.props.getProperty(this.dateField.getValue().toString())));
 		}
 		if (!isEdit || !this.dateField.getValue().toString().equals(Globals.selected.getDate().toString()))
 		{

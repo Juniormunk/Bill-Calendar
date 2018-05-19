@@ -17,11 +17,9 @@ import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -113,7 +111,7 @@ public class LoginController
 						try
 						{
 
-							Main.input = new FileInputStream(filePath);
+							Globals.input = new FileInputStream(filePath);
 
 							String SALT2 = "Lets Not Talk About This";
 
@@ -129,10 +127,10 @@ public class LoginController
 							Cipher aes = Cipher.getInstance("AES/ECB/PKCS5Padding");
 							aes.init(Cipher.DECRYPT_MODE, secretKeySpec);
 
-							Main.in = new CipherInputStream(Main.input, aes);
-							props = new Properties();
+							Globals.in = new CipherInputStream(Globals.input, aes);
+							Globals.props = new Properties();
 
-							props.load(Main.in);
+							Globals.props.load(Globals.in);
 
 							Main.showPrimary();
 
@@ -162,10 +160,10 @@ public class LoginController
 						{
 							try
 							{
-								if (Main.input != null)
+								if (Globals.input != null)
 								{
-									Main.input.close();
-									Main.in.close();
+									Globals.input.close();
+									Globals.in.close();
 								}
 							}
 							catch (IOException e)
@@ -220,7 +218,7 @@ public class LoginController
 						directory.mkdir();
 						try
 						{
-							Main.output = new FileOutputStream(filePath);
+							Globals.output = new FileOutputStream(filePath);
 
 							String SALT2 = "Lets Not Talk About This";
 
@@ -236,16 +234,16 @@ public class LoginController
 							Cipher aes = Cipher.getInstance("AES/ECB/PKCS5Padding");
 							aes.init(Cipher.ENCRYPT_MODE, secretKeySpec);
 
-							Main.out = new CipherOutputStream(Main.output, aes);
+							Globals.out = new CipherOutputStream(Globals.output, aes);
 
-							props = new Properties();
+							Globals.props = new Properties();
 
-							props.setProperty("Today_Color", "#f08585");
-							props.setProperty("Select_Color", "#E0FFFF");
-							props.setProperty("Use_Noti", "true");
-							props.setProperty("Backup_URL", "");
+							Globals.props.setProperty("Today_Color", "#f08585");
+							Globals.props.setProperty("Select_Color", "#E0FFFF");
+							Globals.props.setProperty("Use_Noti", "true");
+							Globals.props.setProperty("Backup_URL", "");
 
-							props.store(Main.out, null);
+							Globals.props.store(Globals.out, null);
 
 							Main.showPrimary();
 
@@ -270,8 +268,8 @@ public class LoginController
 
 							try
 							{
-								Main.out.close();
-								Main.output.close();
+								Globals.out.close();
+								Globals.output.close();
 
 							}
 							catch (IOException e)
@@ -375,7 +373,7 @@ public class LoginController
 
 	public static Color getColor(String prop)
 	{
-		return Color.web(LoginController.props.getProperty(prop));
+		return Color.web(Globals.props.getProperty(prop));
 	}
 
 	@FXML
@@ -410,7 +408,7 @@ public class LoginController
 							try
 							{
 
-								Main.input = new FileInputStream(filePath);
+								Globals.input = new FileInputStream(filePath);
 
 								String SALT2 = "Lets Not Talk About This";
 
@@ -426,10 +424,10 @@ public class LoginController
 								Cipher aes = Cipher.getInstance("AES/ECB/PKCS5Padding");
 								aes.init(Cipher.DECRYPT_MODE, secretKeySpec);
 
-								Main.in = new CipherInputStream(Main.input, aes);
-								props = new Properties();
+								Globals.in = new CipherInputStream(Globals.input, aes);
+								Globals.props = new Properties();
 
-								props.load(Main.in);
+								Globals.props.load(Globals.in);
 
 								Main.showPrimary();
 
@@ -459,10 +457,10 @@ public class LoginController
 							{
 								try
 								{
-									if (Main.input != null)
+									if (Globals.input != null)
 									{
-										Main.input.close();
-										Main.in.close();
+										Globals.input.close();
+										Globals.in.close();
 									}
 								}
 								catch (IOException e)

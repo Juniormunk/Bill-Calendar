@@ -1,10 +1,8 @@
 
-import javafx.animation.FadeTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -16,28 +14,24 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.util.Duration;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
 import java.security.InvalidKeyException;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Properties;
+
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.SecretKeySpec;
+
 
 public class FullCalendarView
 {
@@ -199,9 +193,9 @@ public class FullCalendarView
 		}
 		for (AnchorPaneNode ap : allCalendarDays)
 		{
-			if (LoginController.props.getProperty(ap.getDate().toString()) != null)
+			if (Globals.props.getProperty(ap.getDate().toString()) != null)
 			{
-				ArrayList<Bill> data = Main.stringToArrayList(LoginController.props.getProperty(ap.getDate().toString()));
+				ArrayList<Bill> data = Main.stringToArrayList(Globals.props.getProperty(ap.getDate().toString()));
 				ap.loadData(data);
 			}
 			else
@@ -350,9 +344,9 @@ public class FullCalendarView
 		Globals.con.Paid.setDisable(true);
 		Globals.con.Paid.setSelected(false);
 		
-		if (LoginController.props.getProperty(Globals.selected.getDate().toString()) != null)
+		if (Globals.props.getProperty(Globals.selected.getDate().toString()) != null)
 		{
-			ArrayList<Bill> data = Main.stringToArrayList(LoginController.props.getProperty(Globals.selected.getDate().toString()));
+			ArrayList<Bill> data = Main.stringToArrayList(Globals.props.getProperty(Globals.selected.getDate().toString()));
 			Globals.selected.loadData(data);
 			if (Globals.selected.getData().size() > 0)
 			{
@@ -404,16 +398,16 @@ public class FullCalendarView
 	{
 		try
 		{
-			Main.input = new FileInputStream(LoginController.filePath);
+			Globals.input = new FileInputStream(LoginController.filePath);
 
 			try
 			{
 				Cipher aes = Cipher.getInstance("AES/ECB/PKCS5Padding");
 				aes.init(Cipher.DECRYPT_MODE, LoginController.secretKeySpec);
-				Main.in = new CipherInputStream(Main.input, aes);
-				LoginController.props.load(Main.in);
-				Main.in.close();
-				Main.input.close();
+				Globals.in = new CipherInputStream(Globals.input, aes);
+				Globals.props.load(Globals.in);
+				Globals.in.close();
+				Globals.input.close();
 			}
 			catch (InvalidKeyException e)
 			{
@@ -440,7 +434,7 @@ public class FullCalendarView
 
 		try
 		{
-			Main.output = new FileOutputStream(LoginController.filePath);
+			Globals.output = new FileOutputStream(LoginController.filePath);
 
 			try
 			{
@@ -448,20 +442,20 @@ public class FullCalendarView
 
 				aes.init(Cipher.ENCRYPT_MODE, LoginController.secretKeySpec);
 
-				Main.out = new CipherOutputStream(Main.output, aes);
+				Globals.out = new CipherOutputStream(Globals.output, aes);
 
-				LoginController.props.setProperty(name, list);
+				Globals.props.setProperty(name, list);
 				try
 				{
-					LoginController.props.store(Main.out, null);
+					Globals.props.store(Globals.out, null);
 				}
 				catch (IOException e)
 				{
 					e.printStackTrace();
 				}
 				updateSelected();
-				Main.out.close();
-				Main.output.close();
+				Globals.out.close();
+				Globals.output.close();
 			}
 			catch (InvalidKeyException e1)
 			{
@@ -501,16 +495,16 @@ public class FullCalendarView
 				directory.mkdir();
 				try
 				{
-					Main.input = new FileInputStream(LoginController.filePath);
+					Globals.input = new FileInputStream(LoginController.filePath);
 
 					try
 					{
 						Cipher aes = Cipher.getInstance("AES/ECB/PKCS5Padding");
 						aes.init(Cipher.DECRYPT_MODE, LoginController.secretKeySpec);
-						Main.in = new CipherInputStream(Main.input, aes);
-						LoginController.props.load(Main.in);
-						Main.in.close();
-						Main.input.close();
+						Globals.in = new CipherInputStream(Globals.input, aes);
+						Globals.props.load(Globals.in);
+						Globals.in.close();
+						Globals.input.close();
 					}
 					catch (InvalidKeyException e)
 					{
@@ -537,7 +531,7 @@ public class FullCalendarView
 
 				try
 				{
-					Main.output = new FileOutputStream(path + "\\" + LoginController.fileName);
+					Globals.output = new FileOutputStream(path + "\\" + LoginController.fileName);
 
 					try
 					{
@@ -545,18 +539,18 @@ public class FullCalendarView
 
 						aes.init(Cipher.ENCRYPT_MODE, LoginController.secretKeySpec);
 
-						Main.out = new CipherOutputStream(Main.output, aes);
+						Globals.out = new CipherOutputStream(Globals.output, aes);
 						try
 						{
-							LoginController.props.store(Main.out, null);
+							Globals.props.store(Globals.out, null);
 						}
 						catch (IOException e)
 						{
 							e.printStackTrace();
 						}
 						updateSelected();
-						Main.out.close();
-						Main.output.close();
+						Globals.out.close();
+						Globals.output.close();
 					}
 					catch (InvalidKeyException e1)
 					{
@@ -586,16 +580,16 @@ public class FullCalendarView
 			{
 				try
 				{
-					Main.input = new FileInputStream(LoginController.filePath);
+					Globals.input = new FileInputStream(LoginController.filePath);
 
 					try
 					{
 						Cipher aes = Cipher.getInstance("AES/ECB/PKCS5Padding");
 						aes.init(Cipher.DECRYPT_MODE, LoginController.secretKeySpec);
-						Main.in = new CipherInputStream(Main.input, aes);
-						LoginController.props.load(Main.in);
-						Main.in.close();
-						Main.input.close();
+						Globals.in = new CipherInputStream(Globals.input, aes);
+						Globals.props.load(Globals.in);
+						Globals.in.close();
+						Globals.input.close();
 					}
 					catch (InvalidKeyException e)
 					{
@@ -622,7 +616,7 @@ public class FullCalendarView
 
 				try
 				{
-					Main.output = new FileOutputStream(path + "\\" + LoginController.fileName);
+					Globals.output = new FileOutputStream(path + "\\" + LoginController.fileName);
 
 					try
 					{
@@ -630,18 +624,18 @@ public class FullCalendarView
 
 						aes.init(Cipher.ENCRYPT_MODE, LoginController.secretKeySpec);
 
-						Main.out = new CipherOutputStream(Main.output, aes);
+						Globals.out = new CipherOutputStream(Globals.output, aes);
 						try
 						{
-							LoginController.props.store(Main.out, null);
+							Globals.props.store(Globals.out, null);
 						}
 						catch (IOException e)
 						{
 							e.printStackTrace();
 						}
 						updateSelected();
-						Main.out.close();
-						Main.output.close();
+						Globals.out.close();
+						Globals.output.close();
 					}
 					catch (InvalidKeyException e1)
 					{
@@ -675,16 +669,16 @@ public class FullCalendarView
 	{
 		try
 		{
-			Main.input = new FileInputStream(LoginController.filePath);
+			Globals.input = new FileInputStream(LoginController.filePath);
 
 			try
 			{
 				Cipher aes = Cipher.getInstance("AES/ECB/PKCS5Padding");
 				aes.init(Cipher.DECRYPT_MODE, LoginController.secretKeySpec);
-				Main.in = new CipherInputStream(Main.input, aes);
-				LoginController.props.load(Main.in);
-				Main.in.close();
-				Main.input.close();
+				Globals.in = new CipherInputStream(Globals.input, aes);
+				Globals.props.load(Globals.in);
+				Globals.in.close();
+				Globals.input.close();
 			}
 			catch (InvalidKeyException e)
 			{
@@ -711,7 +705,7 @@ public class FullCalendarView
 
 		try
 		{
-			Main.output = new FileOutputStream(LoginController.filePath);
+			Globals.output = new FileOutputStream(LoginController.filePath);
 
 			try
 			{
@@ -719,20 +713,20 @@ public class FullCalendarView
 
 				aes.init(Cipher.ENCRYPT_MODE, LoginController.secretKeySpec);
 
-				Main.out = new CipherOutputStream(Main.output, aes);
+				Globals.out = new CipherOutputStream(Globals.output, aes);
 
-				LoginController.props.remove(name);
+				Globals.props.remove(name);
 				try
 				{
-					LoginController.props.store(Main.out, null);
+					Globals.props.store(Globals.out, null);
 				}
 				catch (IOException e)
 				{
 					e.printStackTrace();
 				}
 				updateSelected();
-				Main.out.close();
-				Main.output.close();
+				Globals.out.close();
+				Globals.output.close();
 			}
 			catch (InvalidKeyException e1)
 			{

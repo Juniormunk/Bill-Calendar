@@ -1,21 +1,15 @@
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javax.crypto.CipherInputStream;
-import javax.crypto.CipherOutputStream;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -48,16 +42,6 @@ public class Main extends Application
 	public static Stage about;
 	public static Stage settings;
 
-	public static OutputStream output = null;
-	public static FileInputStream input = null;
-
-	public static CipherOutputStream out;
-	public static CipherInputStream in;
-
-	public static NewBillController addBillcontroller;
-	public static settingsController settingsController;
-	public static LoginController loginController;
-
 	public static void main(String[] args)
 	{
 		Application.launch(args);
@@ -79,7 +63,7 @@ public class Main extends Application
 		LoginStage.setScene(scene);
 		LoginStage.initStyle(StageStyle.UNDECORATED);
 		LoginStage.getIcons().add(new Image(Main.class.getResourceAsStream("bill.png")));
-		loginController = loader.getController();
+		Globals.loginController = loader.getController();
 
 		FXMLLoader loader1 = new FXMLLoader(getClass().getResource("fullCalendar.fxml"));
 		primaryStage.setTitle("Bill Calendar");
@@ -140,18 +124,18 @@ public class Main extends Application
 
 		addBill.setOnCloseRequest(e ->
 		{
-			Main.addBillcontroller.nameField.setText("");
-			Main.addBillcontroller.otherField.setText("");
-			Main.addBillcontroller.linkField.setText("");
-			Main.addBillcontroller.comField.setText("");
-			Main.addBillcontroller.amountField.setText("");
-			Main.addBillcontroller.paidToggle.setSelected(false);
-			Main.addBillcontroller.isEdit = false;
+			Globals.addBillcontroller.nameField.setText("");
+			Globals.addBillcontroller.otherField.setText("");
+			Globals.addBillcontroller.linkField.setText("");
+			Globals.addBillcontroller.comField.setText("");
+			Globals.addBillcontroller.amountField.setText("");
+			Globals.addBillcontroller.paidToggle.setSelected(false);
+			Globals.addBillcontroller.isEdit = false;
 		});
 
 		NewBillController addBillcontroller = addBillloader1.getController();
 
-		Main.addBillcontroller = addBillcontroller;
+		Globals.addBillcontroller = addBillcontroller;
 
 		FXMLLoader aboutloader1 = new FXMLLoader(getClass().getResource("about.fxml"));
 		about.setTitle("Bill Calendar");
@@ -169,14 +153,14 @@ public class Main extends Application
 
 		settingsController settingsController = settingsloader1.getController();
 
-		Main.settingsController = settingsController;
+		Globals.settingsController = settingsController;
 
 		settings.setOnShowing(e ->
 		{
-			Main.settingsController.selectColor.setValue(Color.web(LoginController.props.getProperty("Select_Color")));
-			Main.settingsController.todayColor.setValue(Color.web(LoginController.props.getProperty("Today_Color")));
-			Main.settingsController.useNotifs.setSelected(getBool(LoginController.props.getProperty("Use_Noti")));
-			Main.settingsController.urlBar.setText(LoginController.props.getProperty("Backup_URL"));
+			Globals.settingsController.selectColor.setValue(Color.web(Globals.props.getProperty("Select_Color")));
+			Globals.settingsController.todayColor.setValue(Color.web(Globals.props.getProperty("Today_Color")));
+			Globals.settingsController.useNotifs.setSelected(getBool(Globals.props.getProperty("Use_Noti")));
+			Globals.settingsController.urlBar.setText(Globals.props.getProperty("Backup_URL"));
 		});
 
 		LoginStage.show();
@@ -252,7 +236,7 @@ public class Main extends Application
 		Globals.selected.setBackground(new Background(new BackgroundFill(LoginController.getColor("Select_Color"), CornerRadii.EMPTY, Insets.EMPTY)));
 		FullCalendarView.updateSelected();
 		FullCalendarView.updateData();
-		if (Main.getBool(LoginController.props.get("Use_Noti").toString()) && FullCalendarView.getToday().getData().size() > 0 && FullCalendarView.getUnpaidCount(FullCalendarView.getToday()) > 0)
+		if (Main.getBool(Globals.props.get("Use_Noti").toString()) && FullCalendarView.getToday().getData().size() > 0 && FullCalendarView.getUnpaidCount(FullCalendarView.getToday()) > 0)
 		{
 			TrayNotification tray = new TrayNotification();
 			tray.setTitle("Bill Calendar");
@@ -270,7 +254,7 @@ public class Main extends Application
 
 	public static void showAddBill()
 	{
-		Main.addBillcontroller.dateField.setValue(Globals.selected.getDate());
+		Globals.addBillcontroller.dateField.setValue(Globals.selected.getDate());
 		addBill.show();
 		addBill.toFront();
 
@@ -306,19 +290,19 @@ public class Main extends Application
 	public static void closeAll()
 	{
 
-		if (Main.output != null)
+		if (Globals.output != null)
 		{
 			try
 			{
-				if (!LoginController.props.getProperty("Backup_URL").equals("") || LoginController.props.getProperty("Backup_URL") != null)
+				if (!Globals.props.getProperty("Backup_URL").equals("") || Globals.props.getProperty("Backup_URL") != null)
 				{
-					FullCalendarView.saveBackup(LoginController.props.getProperty("Backup_URL"));
+					FullCalendarView.saveBackup(Globals.props.getProperty("Backup_URL"));
 				}
 
-				Main.output.close();
-				Main.out.close();
-				Main.in.close();
-				Main.input.close();
+				Globals.output.close();
+				Globals.out.close();
+				Globals.in.close();
+				Globals.input.close();
 
 			}
 			catch (IOException e)

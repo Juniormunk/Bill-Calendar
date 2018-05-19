@@ -2,8 +2,7 @@
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.LocalDate;
-import java.util.ArrayList;
+
 import java.util.Optional;
 
 import org.controlsfx.control.ToggleSwitch;
@@ -17,8 +16,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -76,14 +73,14 @@ public class Controller
 
 					Globals.selectedBill.name = Globals.selectedBill.name.substring(0, Globals.selectedBill.name.length() - 7);
 				}
-				Main.addBillcontroller.isEdit = true;
-				Main.addBillcontroller.dateField.setValue(Globals.selected.getDate());
-				Main.addBillcontroller.nameField.setText(Globals.selectedBill.name);
-				Main.addBillcontroller.otherField.setText(Globals.selectedBill.info);
-				Main.addBillcontroller.linkField.setText(Globals.selectedBill.link);
-				Main.addBillcontroller.comField.setText(Globals.selectedBill.companyName);
-				Main.addBillcontroller.amountField.setText(Globals.selectedBill.amountDue);
-				Main.addBillcontroller.paidToggle.setSelected(Main.getBool(Globals.selectedBill.paid));
+				Globals.addBillcontroller.isEdit = true;
+				Globals.addBillcontroller.dateField.setValue(Globals.selected.getDate());
+				Globals.addBillcontroller.nameField.setText(Globals.selectedBill.name);
+				Globals.addBillcontroller.otherField.setText(Globals.selectedBill.info);
+				Globals.addBillcontroller.linkField.setText(Globals.selectedBill.link);
+				Globals.addBillcontroller.comField.setText(Globals.selectedBill.companyName);
+				Globals.addBillcontroller.amountField.setText(Globals.selectedBill.amountDue);
+				Globals.addBillcontroller.paidToggle.setSelected(Main.getBool(Globals.selectedBill.paid));
 				Main.showAddBill();
 
 			}
@@ -102,11 +99,9 @@ public class Controller
 			this.Paid.setDisable(false);
 			Globals.con.Paid.setSelected(Main.getBool(Globals.selectedBill.paid));
 
-
 		}
 
 	}
-
 
 	@FXML
 	void OpenLink(ActionEvent event)
@@ -207,14 +202,14 @@ public class Controller
 
 		}
 
-		Main.addBillcontroller.isEdit = true;
-		Main.addBillcontroller.dateField.setValue(Globals.selected.getDate());
-		Main.addBillcontroller.nameField.setText(Globals.selectedBill.name);
-		Main.addBillcontroller.otherField.setText(Globals.selectedBill.info);
-		Main.addBillcontroller.linkField.setText(Globals.selectedBill.link);
-		Main.addBillcontroller.comField.setText(Globals.selectedBill.companyName);
-		Main.addBillcontroller.amountField.setText(Globals.selectedBill.amountDue);
-		Main.addBillcontroller.paidToggle.setSelected(Main.getBool(Globals.selectedBill.paid));
+		Globals.addBillcontroller.isEdit = true;
+		Globals.addBillcontroller.dateField.setValue(Globals.selected.getDate());
+		Globals.addBillcontroller.nameField.setText(Globals.selectedBill.name);
+		Globals.addBillcontroller.otherField.setText(Globals.selectedBill.info);
+		Globals.addBillcontroller.linkField.setText(Globals.selectedBill.link);
+		Globals.addBillcontroller.comField.setText(Globals.selectedBill.companyName);
+		Globals.addBillcontroller.amountField.setText(Globals.selectedBill.amountDue);
+		Globals.addBillcontroller.paidToggle.setSelected(Main.getBool(Globals.selectedBill.paid));
 		Main.addBill.show();
 	}
 
