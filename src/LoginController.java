@@ -31,7 +31,8 @@ import javafx.util.Duration;
 
 public class LoginController
 {
-	// TODO: add support for color, add support for browse files, add support for cancel and accept buttons, add support for use notifications.
+	// TODO: add support for color, add support for browse files, add support for
+	// cancel and accept buttons, add support for use notifications.
 
 	@FXML
 	private Pane window;
@@ -55,7 +56,10 @@ public class LoginController
 
 	private boolean dragable = true;
 
-	private static final String folderPath = System.getenv("ProgramFiles") + "\\BillCalandar";
+	private static final String folderPath = System.getProperty("user.home") + "\\documents" + "\\BillCalandar";
+
+	// private static final String folderPath = System.getenv("ProgramFiles") +
+	// "\\BillCalandar";
 
 	public static String fileName = "";
 
@@ -95,7 +99,8 @@ public class LoginController
 
 				fileName = UUID.nameUUIDFromBytes(username.toLowerCase().getBytes()) + ".properties";
 
-				filePath = folderPath + "\\" + UUID.nameUUIDFromBytes(username.toLowerCase().getBytes()) + ".properties";
+				filePath = folderPath + "\\" + UUID.nameUUIDFromBytes(username.toLowerCase().getBytes())
+						+ ".properties";
 
 				if (!username.equals("") && !password.equals(""))
 				{
@@ -204,7 +209,8 @@ public class LoginController
 
 				fileName = UUID.nameUUIDFromBytes(username.toLowerCase().getBytes()) + ".properties";
 
-				filePath = folderPath + "\\" + UUID.nameUUIDFromBytes(username.toLowerCase().getBytes()) + ".properties";
+				filePath = folderPath + "\\" + UUID.nameUUIDFromBytes(username.toLowerCase().getBytes())
+						+ ".properties";
 
 				if (!username.equals("") && !password.equals(""))
 				{
@@ -270,7 +276,6 @@ public class LoginController
 							{
 								Globals.out.close();
 								Globals.output.close();
-
 							}
 							catch (IOException e)
 							{
@@ -392,7 +397,8 @@ public class LoginController
 
 					fileName = UUID.nameUUIDFromBytes(username.toLowerCase().getBytes()) + ".properties";
 
-					filePath = folderPath + "\\" + UUID.nameUUIDFromBytes(username.toLowerCase().getBytes()) + ".properties";
+					filePath = folderPath + "\\" + UUID.nameUUIDFromBytes(username.toLowerCase().getBytes())
+							+ ".properties";
 
 					if (!username.equals("") && !password.equals(""))
 					{
